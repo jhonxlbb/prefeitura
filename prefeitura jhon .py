@@ -1,17 +1,13 @@
 import os
+from dataclasses import dataclass, asdict
+
+@dataclass
+class Familia:
+    salario: float
+    filhos: int
 
 # Inicializa a lista de dados
 dados = []
-
-# Inicializa contadores
-total_familias = len(dados)
-total_salario = 0
-total_filhos = 0
-
-# Calcula os totais iniciais
-for salario, filhos in dados:
-    total_salario += salario
-    total_filhos += filhos
 
 # Loop do menu
 while True:
@@ -26,27 +22,27 @@ while True:
         # Adiciona nova família
         salario = float(input("Salário da família: "))
         filhos = int(input("Número de filhos: "))
-        dados.append((salario, filhos))
+        nova_familia = Familia(salario, filhos)
+        dados.append(nova_familia)
         
-        # Atualiza contadores
-        total_familias += 1
-        total_salario += salario
-        total_filhos += filhos
+        # Salva dados no arquivo
+        with open("pesquisa_prefeitura.txt", "w") as file:
+            for familia in dados:
+                file.write(f"{familia.salario},{familia.filhos}\n")
 
     elif opcao == '2':
         # Exibe os resultados
+        total_familias = len(dados)
+        total_salario = sum(familia.salario for familia in dados)
+        total_filhos = sum(familia.filhos for familia in dados)
+
         if total_familias > 0:
             media_salario = total_salario / total_familias
             media_filhos = total_filhos / total_familias
             
             # Encontra o maior e menor salário
-            maior_salario = dados[0][0]
-            menor_salario = dados[0][0]
-            for salario, _ in dados:
-                if salario > maior_salario:
-                    maior_salario = salario
-                if salario < menor_salario:
-                    menor_salario = salario
+            maior_salario = max(familia.salario for familia in dados)
+            menor_salario = min(familia.salario for familia in dados)
 
             # Mostra os resultados
             print(f"Total de famílias: {total_familias}")
