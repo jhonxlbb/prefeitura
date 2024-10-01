@@ -1,7 +1,8 @@
 import os
 os.system("cls || clear")
 from dataclasses import dataclass
-
+# Equipe: Leonardo Araújo, João Filipe
+# Turma: 93313
 @dataclass
 class Familia:
     salario: float
