@@ -33,7 +33,7 @@ while True:
         with open("pesquisa_prefeitura.txt", "w") as file:
             file.write(f"Quantidade de famílias: {len(dados)}\n")
             for familia in dados:
-                file.write(f"{familia.salario},{familia.filhos}\n")
+                file.write(f"salario:{familia.salario},filhos:{familia.filhos}\n")
 
     elif opcao == '2':
         os.system("cls || clear")
