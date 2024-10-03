@@ -1,8 +1,10 @@
 import os
 os.system("cls || clear")
 from dataclasses import dataclass
-# Equipe: Leonardo Araújo, João Filipe
-# Turma: 93313
+
+#alunos: Leonardo Araujo | João Filipe
+#Turma: G93313
+
 @dataclass
 class Familia:
     salario: float
@@ -29,6 +31,7 @@ while True:
         
         # Salvar dados no arquivo.
         with open("pesquisa_prefeitura.txt", "w") as file:
+            file.write(f"Quantidade de famílias: {len(dados)}\n")
             for familia in dados:
                 file.write(f"{familia.salario},{familia.filhos}\n")
 
